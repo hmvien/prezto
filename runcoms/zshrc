@@ -102,7 +102,8 @@ alias gru='git remote update'
 alias grm='git rebase origin/master'
 alias gittouch='git commit --amend --date="$(date)"'
 
-alias h='history | tail -25'
+alias h='history 0 | tail -25'
+alias history='history 0'
 
 #####
 bindkey "jj" vi-cmd-mode # map jj to go back to command mode
