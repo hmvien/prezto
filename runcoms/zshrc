@@ -108,3 +108,8 @@ alias h='history | tail -25'
 bindkey "jj" vi-cmd-mode # map jj to go back to command mode
 bindkey "^r" history-incremental-search-backward
 bindkey "^f" history-incremental-search-forward
+
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+export WORKON_HOME=~/.virtualenvs
+export PROJECT_HOME=~/git
+source /usr/local/bin/virtualenvwrapper.sh
