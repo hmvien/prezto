@@ -79,7 +79,7 @@ alias csl='clear'
 alias sl='ls'
 
 #allow grep and less to have color
-alias grep='grep --color=auto'
+alias grep='grep --color=auto -i'
 alias less='less -R'
 
 #use less
@@ -104,6 +104,10 @@ alias gittouch='git commit --amend --date="$(date)"'
 
 alias h='history 0 | tail -25'
 alias history='history 0'
+
+function fgrep {
+  find . -name "$1" -exec grep "$2" /dev/null {} \;
+}
 
 #####
 bindkey "jj" vi-cmd-mode # map jj to go back to command mode
