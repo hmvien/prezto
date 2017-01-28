@@ -10,6 +10,8 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh
+
 # Customize to your needs...
 export PATH=./:~/bin:~/bin/eclipse:~/bin/mongodb/bin:/opt/local/bin:/opt/local/sbin:~/.rvm/bin:$PATH
 
@@ -106,7 +108,7 @@ alias h='history 0 | tail -25'
 alias history='history 0'
 
 function fgrep {
-  find . -name "$1" -exec grep "$2" /dev/null {} \;
+  find . -name "$1" -type f -exec grep --color=auto -i "$2" /dev/null {} \;
 }
 
 #####
@@ -114,7 +116,8 @@ bindkey "jj" vi-cmd-mode # map jj to go back to command mode
 bindkey "^r" history-incremental-search-backward
 bindkey "^f" history-incremental-search-forward
 
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+export VIRTUALENVWRAPPER_PYTHON=`which python3`
 export WORKON_HOME=~/.virtualenvs
 export PROJECT_HOME=~/git
 source /usr/local/bin/virtualenvwrapper.sh
+
