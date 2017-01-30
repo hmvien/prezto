@@ -107,7 +107,11 @@ alias gru='git remote update'
 alias grm='git rebase origin/master'
 alias gittouch='git commit --amend --date="$(date)"'
 
-alias h='history 0 | tail -25'
+if [[ "$(uname)" == "Linux" ]]; then
+  alias h='history | tail -25'
+else
+  alias h='history 0 | tail -25'
+fi
 alias history='history 0'
 
 function fgrep {
