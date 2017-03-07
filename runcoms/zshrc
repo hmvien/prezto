@@ -8,11 +8,20 @@ fi
 # Customize to your needs...
 export PATH=./:~/bin:~/bin/eclipse:~/bin/mongodb/bin:/opt/local/bin:/opt/local/sbin:~/.rvm/bin:$PATH
 export PATH=~/.jenv/bin:$PATH
+export PATH=~/bin/scmpuff:$PATH
+
 eval "$(jenv init -)"
+eval "$(scmpuff init -s)"
 
 if [[ "$(uname)" == "Linux" ]]; then
-  export JAVA7_HOME=$(update-alternatives --list java | grep java-7 | sed "s:bin/java::")
-  export JAVA8_HOME=$(update-alternatives --list java | grep java-8 | sed "s:bin/java::")
+  export JAVA7_HOME=$(update-alternatives --list java | grep java-7 | sed "s:jre/bin/java::")
+  export JAVA8_HOME=$(update-alternatives --list java | grep java-8 | sed "s:jre/bin/java::")
+
+  alias tmux="tmux -2"
+  function tmx {
+    tmux attach -t $1 || tmux new -s $1
+  }
+
 elif [[ "$(uname)" == "Darwin" ]]; then
   export JAVA7_HOME=$(/usr/libexec/java_home -v 1.7)
   export JAVA8_HOME=$(/usr/libexec/java_home -v 1.8)
@@ -21,6 +30,8 @@ fi
 ##################
 ##     ALIAS    ##
 ##################
+
+alias sbt-debug="sbt -jvm-debug 5005"
 
 # aliasing platform specific binaries
 if [[ "$(uname)" == "Linux" ]]; then
