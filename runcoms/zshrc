@@ -6,7 +6,7 @@ fi
 [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh
 
 # Customize to your needs...
-export PATH=./:~/bin:~/bin/eclipse:~/bin/mongodb/bin:/opt/local/bin:/opt/local/sbin:~/.rvm/bin:$PATH
+export PATH=./:~/bin:~/bin/mongodb/bin:/opt/local/bin:/opt/local/sbin:~/.rvm/bin:$PATH
 export PATH=~/.jenv/bin:$PATH
 export PATH=~/bin/scmpuff:$PATH
 
@@ -14,8 +14,8 @@ eval "$(jenv init -)"
 eval "$(scmpuff init -s)"
 
 if [[ "$(uname)" == "Linux" ]]; then
-  export JAVA7_HOME=$(update-alternatives --list java | grep java-7 | sed "s:jre/bin/java::")
-  export JAVA8_HOME=$(update-alternatives --list java | grep java-8 | sed "s:jre/bin/java::")
+  export JAVA7_HOME=/usr/lib/jvm/java-7-openjdk
+  export JAVA8_HOME=/usr/lib/jvm/java-8-openjdk
 
   alias tmux="tmux -2"
   function tmx {
@@ -113,7 +113,7 @@ alias ll='ls -l'
 alias lal='ls -al'
 
 #aptget
-alias ai='sudo apt-get install'
+alias ai='yay -S'
 
 alias gru='git remote update'
 alias grm='git rebase origin/master'
@@ -138,5 +138,9 @@ bindkey "^f" history-incremental-search-forward
 export VIRTUALENVWRAPPER_PYTHON=`which python3`
 export WORKON_HOME=~/.virtualenvs
 export PROJECT_HOME=~/git
-source /usr/local/bin/virtualenvwrapper.sh
+if [[ "$(uname)" == "Linux" ]]; then
+  source /usr/bin/virtualenvwrapper.sh
+elif [[ "$(uname)" == "Darwin" ]]; then
+  source /usr/local/bin/virtualenvwrapper.sh
+fi
 
