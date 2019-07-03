@@ -36,7 +36,7 @@ alias sbt-debug="sbt -jvm-debug 5005"
 # aliasing platform specific binaries
 if [[ "$(uname)" == "Linux" ]]; then
     alias ls='ls --color=auto'
-    alias g="gvim --remote-silent"
+    alias g="nvim-gtk"
     alias open="xdg-open"
     alias xclip="/usr/bin/xclip -selection clipboard"
 elif [[ "$(uname)" == "Darwin" ]]; then
@@ -102,8 +102,9 @@ alias less='less -R'
 #use less
 alias more='less -R'
 
-#use vim
-alias vi="vim"
+#use nvim
+alias vi="nvim"
+alias vim="nvim"
 
 #Standard ls commands
 #list all .* files
