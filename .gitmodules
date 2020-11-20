@@ -16,3 +16,6 @@
 [submodule "modules/prompt/functions/pure"]
 	path = modules/prompt/external/pure
 	url = https://github.com/sindresorhus/pure.git
+[submodule "contrib"]
+	path = contrib
+	url = https://github.com/belak/prezto-contrib
