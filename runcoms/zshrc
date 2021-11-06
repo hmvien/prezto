@@ -42,7 +42,7 @@ if [[ "$(uname)" == "Linux" ]]; then
 elif [[ "$(uname)" == "Darwin" ]]; then
     alias ls='/usr/local/bin/gls --color=auto'
     alias find='gfind'
-    alias g="mvim --remote-silent"
+    alias g="vimr"
 fi
 
 ## Standard aliases - security
