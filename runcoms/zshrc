@@ -3,7 +3,9 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh
+export HISTSIZE=100000
+export SAVEHIST=$HISTSIZE
+setopt EXTENDED_HISTORY
 
 # Customize to your needs...
 export PATH=./:~/bin:~/bin/mongodb/bin:/opt/local/bin:/opt/local/sbin:~/.rvm/bin:$PATH
@@ -144,4 +146,7 @@ if [[ "$(uname)" == "Linux" ]]; then
 elif [[ "$(uname)" == "Darwin" ]]; then
   source /usr/local/bin/virtualenvwrapper.sh
 fi
+
+export NVM_DIR="/Users/hvien/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"  # This loads nvm
 
