@@ -34,7 +34,6 @@ zstyle ':prezto:load' pmodule \
   'terminal' \
   'editor' \
   'history' \
-  'history-substring-search' \
   'directory' \
   'spectrum' \
   'utility' \
@@ -43,6 +42,7 @@ zstyle ':prezto:load' pmodule \
   'ssh' \
   'fasd' \
   'syntax-highlighting' \
+  'history-substring-search' \
   'contrib-prompt' \
   'prompt'
 
