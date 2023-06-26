@@ -16,6 +16,7 @@ setopt EXTENDED_HISTORY
 
 # Customize to your needs...
 export PATH=./:~/bin:~/bin/mongodb/bin:/opt/local/bin:/opt/local/sbin:~/.rvm/bin:$PATH
+export PATH=/opt/homebrew/bin:$PATH
 export PATH=~/.jenv/bin:$PATH
 export PATH=~/bin/scmpuff:$PATH
 
@@ -49,7 +50,7 @@ if [[ "$(uname)" == "Linux" ]]; then
     alias open="xdg-open"
     alias xclip="/usr/bin/xclip -selection clipboard"
 elif [[ "$(uname)" == "Darwin" ]]; then
-    alias ls='/usr/local/bin/gls --color=auto'
+    alias ls='/opt/homebrew/bin/gls --color=auto'
     alias find='gfind'
     alias g="vimr"
 fi
@@ -77,8 +78,6 @@ alias x='exit'
 # Keep in mind that there is also "locate test.c" which is faster.
 alias ff='find . -name $*'
 # Alias for "." and ".."
-# Shows current directory
-alias .='pwd'
 # Goes back one directory
 alias ..='cd ..'
 alias ../='cd ../'
@@ -151,7 +150,7 @@ export PROJECT_HOME=~/git
 if [[ "$(uname)" == "Linux" ]]; then
   source /usr/bin/virtualenvwrapper.sh
 elif [[ "$(uname)" == "Darwin" ]]; then
-  source /usr/local/bin/virtualenvwrapper.sh
+  source /opt/homebrew/bin/virtualenvwrapper.sh
 fi
 
 export NVM_DIR="/Users/hvien/.nvm"
