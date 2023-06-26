@@ -64,3 +64,5 @@ fi
 if [ -f /Users/hvien/.blend_profile ]; then
   source /Users/hvien/.blend_profile
 fi
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
