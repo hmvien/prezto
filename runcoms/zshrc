@@ -16,7 +16,7 @@ setopt EXTENDED_HISTORY
 
 # Customize to your needs...
 export PATH=./:~/bin:~/bin/mongodb/bin:/opt/local/bin:/opt/local/sbin:~/.rvm/bin:$PATH
-export PATH=/opt/homebrew/bin:$PATH
+export PATH=/opt/homebrew/bin:/usr/local/homebrew/bin:$PATH
 export PATH=~/.jenv/bin:$PATH
 export PATH=~/bin/scmpuff:$PATH
 
@@ -158,3 +158,5 @@ export NVM_DIR="/Users/hvien/.nvm"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
