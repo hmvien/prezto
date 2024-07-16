@@ -130,6 +130,8 @@ alias gru='git remote update'
 alias grm='git rebase origin/master'
 alias gittouch='git commit --amend --date="$(date)"'
 
+alias pn='pnpm'
+
 if [[ "$(uname)" == "Linux" ]]; then
   alias h='history | tail -25'
 else
