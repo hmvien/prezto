@@ -22,6 +22,10 @@ export PATH=~/.jenv/bin:$PATH
 export PATH=~/bin/scmpuff:$PATH
 export PATH=~/.local/bin:$PATH
 
+autoload edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
+
 eval "$(jenv init -)"
 eval "$(scmpuff init -s)"
 
@@ -106,7 +110,7 @@ alias csl='clear'
 alias sl='ls'
 
 #allow grep and less to have color
-alias grep='grep --color=auto -i'
+alias grep='grep --color'
 alias less='less -R'
 
 #use less
@@ -127,8 +131,10 @@ alias lal='ls -al'
 alias ai='yay -S'
 
 alias gru='git remote update'
-alias grm='git rebase origin/master'
+alias grm='git rebase origin/$(main-branch)'
 alias gittouch='git commit --amend --date="$(date)"'
+alias gm='git checkout $(main-branch)'
+alias lg='lazygit'
 
 alias pn='pnpm'
 
@@ -137,10 +143,68 @@ if [[ "$(uname)" == "Linux" ]]; then
 else
   alias h='history 0 | tail -25'
 fi
-alias history='history 0'
+alias h='history'
+
+# Utilities
+function findconfig {
+  if [ -f "$1" ]; then
+    printf '%s\n' "${PWD%/}/$1"
+  elif [ "$PWD" = / ]; then
+    false
+  else
+    (cd .. && findconfig "$1")
+  fi
+}
 
 function fgrep {
   find . -name "$1" -type f -exec grep --color=auto -i -n "$2" /dev/null {} \; 2> /dev/null
+}
+
+# Docker
+function ddown {
+  compose_file=$(findconfig docker-compose.yml)
+  set -x
+  docker-compose --file ${compose_file} down $@
+}
+
+function dup {
+  compose_file=$(findconfig docker-compose.yml)
+  set -x
+  docker-compose --file ${compose_file} up --wait
+}
+
+# Zsh 
+function zreload {
+  source ~/.zshrc
+}
+
+function zrc {
+  vim ~/.zshrc
+}
+
+# Git
+function git-rebase-backup {
+  current_branch=$(git branch --show-current)
+  set -x 
+  git branch "${current_branch}-backup"
+
+  main_branch=$(main-branch)
+  git checkout ${main_branch}
+  git rebase origin/${main_branch}
+  git reset --hard origin/${main_branch}
+
+  git branch -D "${current_branch}"
+  git checkout -b "${current_branch}"
+}
+
+function main-branch {
+  master_exist=$(git branch --list master)
+
+  if [[ -z ${master_exist} ]]; then
+    echo main
+  else
+    echo master
+  fi
 }
 
 #####
