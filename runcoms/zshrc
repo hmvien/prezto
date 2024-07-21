@@ -15,7 +15,6 @@ export SAVEHIST=$HISTSIZE
 setopt EXTENDED_HISTORY
 unsetopt BEEP
 
-# Customize to your needs...
 export PATH=./:~/bin:~/bin/mongodb/bin:/opt/local/bin:/opt/local/sbin:~/.rvm/bin:$PATH
 export PATH=/opt/homebrew/bin:/usr/local/homebrew/bin:$PATH
 export PATH=~/.jenv/bin:$PATH
@@ -23,6 +22,9 @@ export PATH=~/bin/scmpuff:$PATH
 export PATH=~/.local/bin:$PATH
 
 export XDG_CONFIG_HOME="$HOME/.config"
+
+# tmux
+export TPM_PLUGIN_MANAGER_PATH="$(brew --prefix)/opt/tpm/share/tpm/tpm"
 
 autoload edit-command-line
 zle -N edit-command-line
@@ -37,7 +39,7 @@ if [[ "$(uname)" == "Linux" ]]; then
 
   alias tmux="tmux -2"
   function tmx {
-    tmux attach -t $1 || tmux new -s $1
+    tmux new-session -A -s main
   }
 
 elif [[ "$(uname)" == "Darwin" ]]; then
@@ -223,3 +225,6 @@ export NVM_DIR="/Users/hvien/.nvm"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 eval "$($(brew --prefix)/bin/mise activate zsh)"
+
+
+
