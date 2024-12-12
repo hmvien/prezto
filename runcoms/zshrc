@@ -1,8 +1,8 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${USER}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${USER}.zsh"
 fi
 
 # Source Prezto.
@@ -36,7 +36,6 @@ if [[ "$(uname)" == "Linux" ]]; then
 elif [[ "$(uname)" == "Darwin" ]]; then
   export JAVA7_HOME=$(/usr/libexec/java_home -v 1.7)
   export JAVA8_HOME=$(/usr/libexec/java_home -v 1.8)
-
 fi
 
 # wezterm
@@ -46,27 +45,27 @@ fi
 # This function is included in the wezterm shell integration script, but
 # is reproduced here for clarity
 __wezterm_set_user_var() {
-  if hash base64 2>/dev/null ; then
-    if [[ -z "${TMUX}" ]] ; then
-      printf "\033]1337;SetUserVar=%s=%s\007" "$1" `echo -n "$2" | base64`
+  if hash base64 2>/dev/null; then
+    if [[ -z "${TMUX}" ]]; then
+      printf "\033]1337;SetUserVar=%s=%s\007" "$1" $(echo -n "$2" | base64)
     else
       # <https://github.com/tmux/tmux/wiki/FAQ#what-is-the-passthrough-escape-sequence-and-how-do-i-use-it>
       # Note that you ALSO need to add "set -g allow-passthrough on" to your tmux.conf
-      printf "\033Ptmux;\033\033]1337;SetUserVar=%s=%s\007\033\\" "$1" `echo -n "$2" | base64`
+      printf "\033Ptmux;\033\033]1337;SetUserVar=%s=%s\007\033\\" "$1" $(echo -n "$2" | base64)
     fi
   fi
 }
 
 function _run_prog() {
-    # set PROG to the program being run
-    __wezterm_set_user_var "PROG" "$1"
+  # set PROG to the program being run
+  __wezterm_set_user_var "PROG" "$1"
 
-    # arrange to clear it when it is done
-    trap '__wezterm_set_user_var PROG ""' EXIT
+  # arrange to clear it when it is done
+  trap '__wezterm_set_user_var PROG ""' EXIT
 
-    # and now run the corresponding command, taking care to avoid looping
-    # with the alias definition
-    command "$@"
+  # and now run the corresponding command, taking care to avoid looping
+  # with the alias definition
+  command "$@"
 }
 
 # Tmux
@@ -77,7 +76,6 @@ function tmx {
 # Allow ctrl-a for tmux prefix
 bindkey -r '^A'
 
-
 ##################
 ##     ALIAS    ##
 ##################
@@ -86,14 +84,14 @@ alias sbt-debug="sbt -jvm-debug 5005"
 
 # aliasing platform specific binaries
 if [[ "$(uname)" == "Linux" ]]; then
-    alias ls='ls --color=auto'
-    alias g="nvim-gtk"
-    alias open="xdg-open"
-    alias xclip="/usr/bin/xclip -selection clipboard"
+  alias ls='ls --color=auto'
+  alias g="nvim-gtk"
+  alias open="xdg-open"
+  alias xclip="/usr/bin/xclip -selection clipboard"
 elif [[ "$(uname)" == "Darwin" ]]; then
-    alias ls='/opt/homebrew/bin/gls --color=auto'
-    alias find='gfind'
-    alias g="vimr"
+  alias ls='/opt/homebrew/bin/gls --color=auto'
+  alias find='gfind'
+  alias g="vimr"
 fi
 
 ## Standard aliases - security
@@ -195,7 +193,7 @@ function findconfig {
 }
 
 function fgrep {
-  find . -name "$1" -type f -exec grep --color=auto -i -n "$2" /dev/null {} \; 2> /dev/null
+  find . -name "$1" -type f -exec grep --color=auto -i -n "$2" /dev/null {} \; 2>/dev/null
 }
 
 # Docker
@@ -253,11 +251,9 @@ bindkey "^f" history-incremental-search-forward
 export PROJECT_HOME=~/git
 
 export NVM_DIR="/Users/hvien/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh" # This loads nvm
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 eval "$($(brew --prefix)/bin/mise activate zsh)"
-
-
