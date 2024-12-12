@@ -153,8 +153,11 @@ alias more='less -R'
 
 #use nvim
 alias nvim="_run_prog nvim"
-alias vi="nvim"
-alias vim="nvim"
+alias vi="_run_prog nvim"
+alias vim="_run_prog nvim"
+compdef _run_prog=vi
+compdef _run_prog=vim
+compdef _run_prog=nvim
 
 #Standard ls commands
 #list all .* files
@@ -256,6 +259,5 @@ export NVM_DIR="/Users/hvien/.nvm"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 eval "$($(brew --prefix)/bin/mise activate zsh)"
-
 
 
