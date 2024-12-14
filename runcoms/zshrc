@@ -29,6 +29,7 @@ bindkey -M vicmd v edit-command-line
 
 eval "$(jenv init -)"
 eval "$(scmpuff init -s)"
+eval "$(zoxide init zsh)"
 
 if [[ "$(uname)" == "Linux" ]]; then
   export JAVA7_HOME=/usr/lib/jvm/java-7-openjdk
@@ -174,6 +175,9 @@ alias gm='git checkout $(main-branch)'
 alias lg='lazygit'
 
 alias pn='pnpm'
+
+alias j='z'
+alias ji='zi'
 
 if [[ "$(uname)" == "Linux" ]]; then
   alias h='history'
