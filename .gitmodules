@@ -32,3 +32,6 @@
 [submodule "contrib"]
 	path = contrib
 	url = https://github.com/belak/prezto-contrib
+[submodule "custom-contrib/fzf-tab"]
+	path = custom-contrib/fzf-tab
+	url = git@github.com:Aloxaf/fzf-tab.git
