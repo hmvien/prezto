@@ -168,6 +168,7 @@ alias lal='ls -al'
 #aptget
 alias ai='yay -S'
 
+# git
 alias gru='git remote update'
 alias grm='git rebase origin/$(main-branch)'
 alias gittouch='git commit --amend --date="$(date)"'
@@ -204,13 +205,13 @@ function fgrep {
 function ddown {
   compose_file=$(findconfig docker-compose.yml)
   set -x
-  docker-compose --file ${compose_file} down $@
+  docker compose --file ${compose_file} down $@
 }
 
 function dup {
   compose_file=$(findconfig docker-compose.yml)
   set -x
-  docker-compose --file ${compose_file} up --wait
+  docker compose --file ${compose_file} up --wait
 }
 
 # Zsh
@@ -253,9 +254,6 @@ bindkey "^r" history-incremental-search-backward
 bindkey "^f" history-incremental-search-forward
 
 export PROJECT_HOME=~/git
-
-export NVM_DIR="/Users/hvien/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh" # This loads nvm
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
