@@ -27,6 +27,7 @@ autoload edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 bindkey "jj" vi-cmd-mode # map jj to go back to command mode
+bindkey "\t\t" autosuggest-accept # tab twice to accept autosuggestion
 
 eval "$(jenv init -)"
 eval "$(scmpuff init -s)"
